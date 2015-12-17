@@ -7,7 +7,11 @@ and fix some bugs.
 * *When?* 11th - 16th March 2016
 * *Where?* Marrakech, Morocco at [Priscilla, Queen of the Medina](http://queenofthemedina.com/en/index.html).
 * *How much?* 100 EUR<sup>&#9733;</sup> (accomodation and food, payment on-site).
-* *How do I register?* Register by sending a mail to <marrakech2016@mirage.io> **by February 1st, 2016** (please include a phone number if you want to be picked up and dietary restrictions).
+* *How do I register?* Register by sending a mail to <marrakech2016@mirage.io> **by February 1st, 2016** including:
+   * What you are interested to work on;
+   * Your phone number (if you want to be picked up);
+   * Dietary restrictions; and
+   * Day of arrival and departure.
 * *Who should participate?* Everybody interested in MirageOS.
 * *How big?* We have only limited space (up to 35 people).
 
