@@ -22,10 +22,10 @@ and fix some bugs.
 More information
 * Once you signed up, we will subscribe you to a mailing list with all participants.
 * The nearest airport is [Marrakesh Menara Airport (RAK)](https://en.wikipedia.org/wiki/Marrakesh_Menara_Airport).  There is also Marrakesh Railway Station (train service from and to Tangier, reachable from Spain by ferry).
-* From airport or railway station, take a cab to **Jemaa el-fna** (city centre).
+* From airport or railway station, take a cab to **Jemaa el-Fnaa** (city centre).
 * Follow the map below, the destination address is **27 Derb el Ferrane Azbezt**.
 * A [video](https://www.youtube.com/watch?v=zgzwmyxlKBE) contains detailed descriptions.
-* We are also happy to pick you up at Jemaa el-fna.
+* We are also happy to pick you up at Jemaa el-Fnaa.
 
 
 ![Map](https://raw.githubusercontent.com/mirage/marrakech2016/master/data/map.jpg)
