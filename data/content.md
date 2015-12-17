@@ -7,7 +7,7 @@ bugs.
 * *When?*  11th - 16th March 2016
 * *Where?* Marrakech, Morocco at [Priscilla, Queen of the Medina](http://queenofthemedina.com/en/index.html)
 * *Price?* 100 EUR<sup>&#9733;</sup> (accomodation and food, payment on-site).
-* *How?* Register by sending a mail to <marrakech2016@mirage.io> (please included your name and potential dietary restrictions).
-* *Who?* Everybody interested in [MirageOS](https://mirage.io)
+* *How?* Register by sending a mail to <marrakech2016@mirage.io> (please include dietary restrictions) by 1st February 2016.
+* *Who?* Everybody interested in [MirageOS](https://mirage.io), limited space (first come first serve).
 
 <sup>&#9733;</sup>: If you cannot afford this, please contact us directly.
