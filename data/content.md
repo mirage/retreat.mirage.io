@@ -6,7 +6,7 @@ and fix some bugs.
 
 * *When?* 11th - 16th March 2016
 * *Where?* Marrakech, Morocco at [Priscilla, Queen of the Medina](http://queenofthemedina.com/en/index.html).
-* *How much?* 100 EUR<sup>&#9733;</sup> (accomodation and food, payment on-site).
+* *How much?* 120 EUR<sup>&#9733;</sup> (accomodation and food, payment on-site).
 * *How do I register?* Register by sending a mail to <marrakech2016@mirage.io> **by February 1st, 2016** including:
    * Possibly what you are interested to work on (in case you already know);
    * Dietary restrictions; and

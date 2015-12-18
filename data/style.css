@@ -15,3 +15,8 @@ a, a:visited {
     color: #333;
     font-weight: bold;
 }
+img {
+    margin: auto;
+    width: 60%;
+    padding: 10px;
+}
