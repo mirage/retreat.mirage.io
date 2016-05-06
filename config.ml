@@ -14,7 +14,6 @@ let net =
 let () =
   register "marrakech2016" [
     foreign "Unikernel.Main"
-      ( console @-> stackv4 @-> job )
-      $ default_console
+      ( stackv4 @-> job )
       $ net
   ]
