@@ -23,7 +23,7 @@ struct
     Cstruct.of_string
       ("<html><head><title>1st MirageOS hackathon: 11-16th March 2016, Marrakech, Morocco</title><style>" ^ Style.data ^ "</style></head><body><div id=\"content\">" ^ Content.data ^ "</div></body></html>")
 
-  let start stack =
+  let start stack _ =
     S.listen_tcpv4 stack ~port:80 (serve rendered) ;
     S.listen stack
 

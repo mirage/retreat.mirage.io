@@ -2,6 +2,7 @@ style.ml
 content.ml
 main.ml
 main.native
+key_gen.ml
 _build
 log
 marrakech2016.xe
