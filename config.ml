@@ -22,14 +22,14 @@ let config_shell = impl @@ object
       let open Functoria_app.Cmd in
       let (>>=) = Rresult.(>>=) in
       let dir = Info.root i in
-      run "echo 'let data = {___|' > data/style.ml" >>= fun () ->
-      run "cat data/style.css >> data/style.ml" >>= fun () ->
-      run "echo '|___}' >> data/style.ml" >>= fun () ->
-      run "echo 'let data = {___|' > data/content.ml" >>= fun () ->
-      run "omd data/content.md >> data/content.ml" >>= fun () ->
-      run "echo '|___}' >> data/content.ml"
+      run "echo 'let data = {___|' > style.ml" >>= fun () ->
+      run "cat data/style.css >> style.ml" >>= fun () ->
+      run "echo '|___}' >> style.ml" >>= fun () ->
+      run "echo 'let data = {___|' > content.ml" >>= fun () ->
+      run "omd data/content.md >> content.ml" >>= fun () ->
+      run "echo '|___}' >> content.ml"
 
-    method clean i = Functoria_app.Cmd.run "rm data/style.ml data/content.ml"
+    method clean i = Functoria_app.Cmd.run "rm -f style.ml content.ml"
 
     method module_name = "Functoria_runtime"
     method name = "shell_config"
