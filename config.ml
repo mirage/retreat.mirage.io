@@ -12,8 +12,7 @@ let net =
     (socket_stackv4 default_console [Ipaddr.V4.any])
 
 (* Shell commands to run at configure time *)
-type shellconfig = ShellConfig
-let shellconfig = Type ShellConfig
+type sh = ShellConfig
 
 let config_shell = impl @@ object
     inherit base_configurable
@@ -29,11 +28,12 @@ let config_shell = impl @@ object
       run "omd data/content.md >> content.ml" >>= fun () ->
       run "echo '|___}' >> content.ml"
 
-    method clean i = Functoria_app.Cmd.run "rm -f style.ml content.ml"
+    method clean _ =
+      Functoria_app.Cmd.run "rm -f style.ml content.ml"
 
     method module_name = "Functoria_runtime"
     method name = "shell_config"
-    method ty = shellconfig
+    method ty = Type ShellConfig
 end
 
 let () =
