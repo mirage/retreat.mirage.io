@@ -15,13 +15,20 @@ struct
       [ ("Content-Type", "text/html; charset=UTF-8") ;
         ("Connection", "close") ]
 
-  let serve data =
-    fun tcp ->
-      TCP.writev tcp [ header; data ] >>= fun _ -> TCP.close tcp
+  let serve data tcp =
+    TCP.writev tcp [ header; data ] >>= fun _ ->
+    TCP.close tcp
 
   let rendered =
     Cstruct.of_string
-      ("<html><head><title>1st MirageOS hackathon: 11-16th March 2016, Marrakech, Morocco</title><style>" ^ Style.data ^ "</style></head><body><div id=\"content\">" ^ Content.data ^ "</div></body></html>")
+      (String.concat "" [
+          "<html><head>" ;
+          "<title>1st MirageOS hackathon: 11-16th March 2016, Marrakech, Morocco</title>" ;
+          "<style>" ; Style.data ; "</style>" ;
+          "</head>" ;
+          "<body><div id=\"content\">" ;
+          Content.data ;
+          "</div></body></html>" ])
 
   let start stack _ =
     S.listen_tcpv4 stack ~port:80 (serve rendered) ;
