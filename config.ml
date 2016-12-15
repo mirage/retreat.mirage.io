@@ -1,46 +1,30 @@
 open Mirage
 
-let address addr nm gw =
-  let f = Ipaddr.V4.of_string_exn in
-  { address = f addr ; netmask = f nm ; gateways = [f gw] }
-
-let server = address "198.167.222.204" "255.255.255.0" "198.167.222.1"
+let address =
+  let network = Ipaddr.V4.Prefix.of_address_string_exn "198.167.222.204/24"
+  and gateway = Ipaddr.V4.of_string "198.167.222.1"
+  in
+  { network ; gateway }
 
 let net =
-  if_impl Key.is_xen
-    (direct_stackv4_with_static_ipv4 default_console tap0 server)
-    (socket_stackv4 default_console [Ipaddr.V4.any])
+  if_impl Key.is_unix
+    (socket_stackv4 [Ipaddr.V4.any])
+    (static_ipv4_stack ~config:address default_network)
 
-(* Shell commands to run at configure time *)
-type sh = ShellConfig
-
-let config_shell = impl @@ object
-    inherit base_configurable
-
-    method configure i =
-      let open Functoria_app.Cmd in
-      let (>>=) = Rresult.(>>=) in
-      let dir = Info.root i in
-      run "echo 'let data = {___|' > style.ml" >>= fun () ->
-      run "cat data/style.css >> style.ml" >>= fun () ->
-      run "echo '|___}' >> style.ml" >>= fun () ->
-      run "echo 'let data = {___|' > content.ml" >>= fun () ->
-      run "omd data/content.md >> content.ml" >>= fun () ->
-      run "echo '|___}' >> content.ml"
-
-    method clean _ =
-      Functoria_app.Cmd.run "rm -f style.ml content.ml"
-
-    method module_name = "Functoria_runtime"
-    method name = "shell_config"
-    method ty = Type ShellConfig
-end
+let packages = [
+  package ~sublibs:["lwt"] "logs" ;
+  package ~sublibs:["mirage"] "logs-syslog" ;
+  package "omd" ;
+  package "tyxml" ;
+]
 
 let () =
   register "marrakech2016" [
     foreign
-      ~deps:[abstract config_shell]
+      ~packages
       "Unikernel.Main"
-      ( stackv4 @-> job )
-      $ net
+      ( console @-> pclock @-> stackv4 @-> job )
+    $ default_console
+    $ default_posix_clock
+    $ net
   ]
