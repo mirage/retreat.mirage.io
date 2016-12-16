@@ -25,7 +25,7 @@ struct
   let start con clock stack =
     let reporter =
       let ip = Ipaddr.V4.of_string_exn "198.167.222.206" in
-      UDPLOG.create con clock (S.udpv4 stack) ~hostname:"marrakech2017.mirageio.io" ip ()
+      UDPLOG.create con clock (S.udpv4 stack) ~hostname:"marrakech2017.mirage.io" ip ()
     in
     Logs.set_reporter reporter ;
     S.listen_tcpv4 stack ~port:80 (serve Page.rendered) ;
