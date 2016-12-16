@@ -53,7 +53,7 @@ More information
 * We are also happy to pick you up at Jemaa el-Fnaa (phone number will be provided once you registered).
 
 
-![Map](https://raw.githubusercontent.com/mirage/marrakech2016/master/data/map.jpg)
+![Map](https://raw.githubusercontent.com/mirage/marrakech2017/master/data/map.jpg)
 |___})
 
 let rendered =

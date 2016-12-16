@@ -19,7 +19,7 @@ let packages = [
 ]
 
 let () =
-  register "marrakech2016" [
+  register "marrakech" [
     foreign
       ~packages
       "Unikernel.Main"
