@@ -9,11 +9,15 @@ let address =
 let net =
   if_impl Key.is_unix
     (socket_stackv4 [Ipaddr.V4.any])
-    (static_ipv4_stack ~config:address default_network)
+    (static_ipv4_stack ~config:address ~arp:arp' default_network)
+
+let logger =
+  syslog_udp
+    (syslog_config ~truncate:1484 "marrakech2017.mirage.io" (Ipaddr.V4.of_string_exn "198.167.222.206"))
+    net
 
 let packages = [
   package ~sublibs:["lwt"] "logs" ;
-  package ~sublibs:["mirage"] "logs-syslog" ;
   package "omd" ;
   package "tyxml" ;
 ]
@@ -21,10 +25,9 @@ let packages = [
 let () =
   register "marrakech" [
     foreign
+      ~deps:[abstract logger]
       ~packages
       "Unikernel.Main"
-      ( console @-> pclock @-> stackv4 @-> job )
-    $ default_console
-    $ default_posix_clock
+      ( stackv4 @-> job )
     $ net
   ]

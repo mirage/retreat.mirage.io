@@ -1,10 +1,9 @@
 open Lwt
 open V1_LWT
 
-module Main (C : CONSOLE) (CLOCK : PCLOCK) (S : STACKV4) =
+module Main (S : STACKV4) =
 struct
   module TCP  = S.TCPV4
-  module UDPLOG = Logs_syslog_mirage.Udp(C)(CLOCK)(S.UDPV4)
 
   let http_header ~status xs =
     let headers = List.map (fun (k, v) -> k ^ ": " ^ v) xs in
@@ -22,12 +21,7 @@ struct
     TCP.writev tcp [ header; data ] >>= fun _ ->
     TCP.close tcp
 
-  let start con clock stack =
-    let reporter =
-      let ip = Ipaddr.V4.of_string_exn "198.167.222.206" in
-      UDPLOG.create con clock (S.udpv4 stack) ~hostname:"marrakech2017.mirage.io" ip ()
-    in
-    Logs.set_reporter reporter ;
+  let start stack _ =
     S.listen_tcpv4 stack ~port:80 (serve Page.rendered) ;
     S.listen stack
 
