@@ -9,7 +9,7 @@ let address =
 let net =
   if_impl Key.is_unix
     (socket_stackv4 [Ipaddr.V4.any])
-    (static_ipv4_stack ~config:address ~arp:arp' default_network)
+    (static_ipv4_stack ~config:address ~arp:farp default_network)
 
 let logger =
   syslog_udp
