@@ -29,7 +29,7 @@ hack retreat!  We will celebrate the Mirage3 release.
 The goal is to sync various MirageOS subprojects, start new ones,
 and fix some bugs.
 
-* *When?* 1st - 8th March 2017
+* *When?* 1st (arrival) - 8th (departure) March 2017
 * *Where?* Marrakech, Morocco at [Priscilla, Queen of the Medina](http://queenofthemedina.com/en/index.html).
 * *How much?* 275 EUR<sup>&#9733;</sup> (accommodation and food (full board)).
 * *How do I register?* Register by sending a mail to <marrakech2017@nqsb.io> **by January 15th, 2017** including:
