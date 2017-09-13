@@ -22,22 +22,22 @@ let header t =
 
 let content =
   Omd.to_html (Omd.of_string
-{___|# 3rd MirageOS hack retreat
+{___|# 4th MirageOS hack retreat
 
-We invite you to participate in the third [MirageOS](https://mirage.io)
-hack retreat!  We will celebrate the Mirage3 release.
+We invite you to participate in the fourth [MirageOS](https://mirage.io)
+hack retreat!
 The goal is to sync various MirageOS subprojects, start new ones,
-and fix some bugs.
+and fix bugs.
 
-* *When?* 1st (arrival) - 8th (departure) March 2017
+* *When?* 29th November (arrival) - 6th December (departure) 2017
 * *Where?* Marrakech, Morocco at [Priscilla, Queen of the Medina](http://queenofthemedina.com/en/index.html).
 * *How much?* 275 EUR<sup>&#9733;</sup> (accommodation and food (full board)).
-* *How do I register?* Register by sending a mail to <marrakech2017@nqsb.io> **by January 15th, 2017** including:
-   * Possibly what you are interested to work on (in case you already know);
-   * Dietary restrictions; and
-   * Day of arrival and departure (in case you already know, otherwise tell us once you know).
+* *How do I register?* Register by sending a mail to <marrakech2017@nqsb.io> **by October 15th, 2017** including:
+   * Experience with OCaml and MirageOS;
+   * Interest what to work on; and
+   * Dietary restrictions
 * *Who should participate?* Everybody interested in MirageOS.
-* *How big?* We have only limited space (up to 35 people).
+* *How big?* We have only limited space (up to 30 people).  Selection will be done by various diversity criteria.
 
 <sup>&#9733;</sup>: If you cannot afford this, please contact us directly (at <marrakech2017@nqsb.io>).
 
