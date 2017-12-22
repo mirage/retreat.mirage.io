@@ -14,7 +14,7 @@ let packages = [
 ]
 
 let () =
-  register "marrakech" [
+  register "retreat" [
     foreign
       ~deps:[abstract logger]
       ~packages
