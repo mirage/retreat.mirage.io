@@ -50,7 +50,7 @@ More information
 * A [video](https://www.youtube.com/watch?v=zgzwmyxlKBE) contains detailed descriptions.
 * We are also happy to pick you up at Jemaa el-Fnaa (phone number will be provided once you registered).
 
-Previous hack retreats:
+Previous retreats:
 * 4th November 29th - December 6th 2017 in Marrakesh [report](https://mirage.io/blog/2017-winter-hackathon-roundup)
 * 3rd March 1st - 8th 2017 in Marrakesh [report](https://mirage.io/blog/2017-march-hackathon-roundup)
 * 2nd 13th July 2016 at Darwin College in Cambridge [report](https://mirage.io/blog/2016-summer-hackathon-roundup)

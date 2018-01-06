@@ -10,18 +10,23 @@ struct
     let lines = status :: headers @ [ "\r\n" ] in
     Cstruct.of_string (String.concat "\r\n" lines)
 
-  let header = http_header
+  let header len = http_header
       ~status:"HTTP/1.1 200 OK"
       [ ("Content-Type", "text/html; charset=UTF-8") ;
+        ("Content-length", string_of_int len) ;
         ("Connection", "close") ]
 
   let serve data tcp =
     let ip, port = TCP.dst tcp in
     Logs_lwt.info (fun m -> m "%s:%d served" (Ipaddr.V4.to_string ip) port) >>= fun () ->
-    TCP.writev tcp [ header; data ] >>= fun _ ->
+    TCP.writev tcp data >>= fun _ ->
     TCP.close tcp
 
   let start stack _ =
-    S.listen_tcpv4 stack ~port:80 (serve Page.rendered) ;
+    let data =
+      let content_size = Cstruct.len Page.rendered in
+      [ header content_size ; Page.rendered ]
+    in
+    S.listen_tcpv4 stack ~port:80 (serve data) ;
     S.listen stack
 end
