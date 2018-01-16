@@ -30,7 +30,7 @@ and fix bugs.
 * *When?* 7th March (arrival) - 18th March (departure) 2018
 * *Where?* Marrakech, Morocco at [Priscilla, Queen of the Medina](http://queenofthemedina.com/en/index.html).
 * *How much?* 450 EUR<sup>&#9733;</sup> (accommodation and food (full board)).
-* *How do I register?* Register by sending a mail to <retreat2018@nqsb.io> **by January 15th, 2018** including:
+* *How do I register?* Register by sending a mail to <retreat2018@nqsb.io> **by February 5th, 2018** including:
    * OCaml and MirageOS experience;
    * Project(s) you're interested to work on; and
    * Dietary restrictions
