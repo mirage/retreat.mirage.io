@@ -16,7 +16,7 @@ let packages = [
 let () =
   register "retreat" [
     foreign
-      ~deps:[abstract logger]
+      ~deps:[ abstract logger ; abstract app_info ]
       ~packages
       "Unikernel.Main"
       ( stackv4 @-> job )
