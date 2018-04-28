@@ -20,17 +20,17 @@ let header t =
 
 let content =
   Omd.to_html (Omd.of_string
-{___|# 5th MirageOS hack retreat
+{___|# 6th MirageOS hack retreat
 
-We invite you to participate in the fifth [MirageOS](https://mirage.io)
+We invite you to participate in the sixth [MirageOS](https://mirage.io)
 hack retreat!
 The goal is to sync various MirageOS subprojects, start new ones,
 and fix bugs.
 
-* *When?* 7th March (arrival) - 18th March (departure) 2018
+* *When?* 3rd October (arrival) - 10th October (departure) 2018
 * *Where?* Marrakech, Morocco at [Priscilla, Queen of the Medina](http://queenofthemedina.com/en/index.html).
-* *How much?* 450 EUR<sup>&#9733;</sup> (accommodation and food (full board)).
-* *How do I register?* Register by sending a mail to <retreat2018@nqsb.io> **by February 5th, 2018** including:
+* *How much?* likely 350 EUR<sup>&#9733;</sup>, accommodation and food (full board) included.
+* *How do I register?* Register by sending a mail to <retreat2018@nqsb.io> **by August 15th, 2018** including:
    * OCaml and MirageOS experience;
    * Project(s) you're interested to work on; and
    * Dietary restrictions
@@ -43,7 +43,7 @@ and fix bugs.
 <br/>
 
 More information
-* Once you've signed up, we will subscribe you to a mailing list with all participants.
+* Once you've signed up, you will subscribed to the participants mailing list.
 * You can work on anything but if you need inspiration, browse the [projects](http://canopy.mirage.io/tags/help%20needed) which need help.
 * The nearest airport is [Marrakesh Menara Airport (RAK)](https://en.wikipedia.org/wiki/Marrakesh_Menara_Airport).  There is also Marrakesh Railway Station (train service from and to Tangier, reachable from Spain by ferry).
 * From airport or railway station, take a cab to **Jemaa el-Fnaa** (city centre).
@@ -52,10 +52,11 @@ More information
 * We are also happy to pick you up at Jemaa el-Fnaa (phone number will be provided once you registered).
 
 Previous retreats:
-* 4th November 29th - December 6th 2017 in Marrakesh [report](https://mirage.io/blog/2017-winter-hackathon-roundup)
-* 3rd March 1st - 8th 2017 in Marrakesh [report](https://mirage.io/blog/2017-march-hackathon-roundup)
-* 2nd 13th July 2016 at Darwin College in Cambridge [report](https://mirage.io/blog/2016-summer-hackathon-roundup)
-* 1st March 11th - 16th 2016 in Marrakesh [report](https://mirage.io/blog/2016-spring-hackathon)
+* 5th March 7th - 18th 2018 in Marrakesh, reports: [linse](https://linse.me/2018/04/20/Visiting-the-camels.html), [peter](https://mirage.io/wiki/arm64)
+* 4th November 29th - December 6th 2017 in Marrakesh, reports: [mirage](https://mirage.io/blog/2017-winter-hackathon-roundup)
+* 3rd March 1st - 8th 2017 in Marrakesh, reports: [mirage](https://mirage.io/blog/2017-march-hackathon-roundup), [reynir](http://reyn.ir/posts/2017-03-20-11-27-Marrakech%202017.html), [olle](http://ollehost.dk/blog/2017/03/17/travel-report-mirageos-hack-retreat-in-marrakesh-2017/)
+* 2nd 13th July 2016 at Darwin College in Cambridge, [report](https://mirage.io/blog/2016-summer-hackathon-roundup)
+* 1st March 11th - 16th 2016 in Marrakesh, [report](https://mirage.io/blog/2016-spring-hackathon)
 |___})
 
 let rendered =
