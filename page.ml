@@ -20,14 +20,14 @@ let header t =
 
 let content =
   Omd.to_html (Omd.of_string
-{___|# 7th MirageOS hack retreat
+{___|# 8th MirageOS hack retreat
 
 We invite you to participate in the seventh [MirageOS](https://mirage.io)
 hack retreat!
 The goal is to sync various MirageOS subprojects, start new ones,
 and fix bugs.
 
-* *When?* March 6th (arrival) - March 13th (departure) 2019
+* *When?* September 23rd (arrival) - 29th (departure) 2019
 * *Where?* Marrakech, Morocco at [Priscilla, Queen of the Medina](http://queenofthemedina.com/en/index.html).
 * *How much?* 350 EUR<sup>&#9733;</sup>, accommodation and food (full board) included.
 * *How do I register?* Register by sending a mail to <retreat2018@nqsb.io> **by January 31st, 2019** including:
@@ -53,6 +53,7 @@ More information
 * We are also happy to pick you up at Jemaa el-Fnaa (phone number will be provided once you registered).
 
 Previous retreats:
+* 7th March 6th - 13th 2019 in Marrakesh, reports: [report](https://mirage.io/blog/2019-spring-retreat-roundup) [lynxis](https://lunarius.fe80.eu/blog/mirageos-2019.html) [gabriel](http://gallium.inria.fr/blog/marrakesh-retreat-03-2019/) [tarides](https://tarides.com/blog/2019-05-06-7th-mirageos-hack-retreat.html)
 * 6th October 3rd - 10th 2018 in Marrakesh
 * 5th March 7th - 18th 2018 in Marrakesh, reports: [linse](https://linse.me/2018/04/20/Visiting-the-camels.html), [peter](https://mirage.io/wiki/arm64)
 * 4th November 29th - December 6th 2017 in Marrakesh, reports: [mirage](https://mirage.io/blog/2017-winter-hackathon-roundup)
