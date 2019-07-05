@@ -30,7 +30,7 @@ and fix bugs.
 * *When?* September 23rd (arrival) - 29th (departure) 2019
 * *Where?* Marrakech, Morocco at [Priscilla, Queen of the Medina](http://queenofthemedina.com/en/index.html).
 * *How much?* 350 EUR<sup>&#9733;</sup>, accommodation and food (full board) included.
-* *How do I register?* Register by sending a mail to <retreat2018@nqsb.io> **by January 31st, 2019** including:
+* *How do I register?* Register by sending a mail to <retreat2019@nqsb.io> **by August 15th, 2019** including:
    * How you became interested in MirageOS;
    * Previous experience with MirageOS and OCaml (no upfront experience required) ;
    * Project(s) you're interested to work on; and
