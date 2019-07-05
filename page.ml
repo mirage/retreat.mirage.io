@@ -22,7 +22,7 @@ let content =
   Omd.to_html (Omd.of_string
 {___|# 8th MirageOS hack retreat
 
-We invite you to participate in the seventh [MirageOS](https://mirage.io)
+We invite you to participate in the eighth [MirageOS](https://mirage.io)
 hack retreat!
 The goal is to sync various MirageOS subprojects, start new ones,
 and fix bugs.
