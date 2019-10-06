@@ -20,17 +20,17 @@ let header t =
 
 let content =
   Omd.to_html (Omd.of_string
-{___|# 8th MirageOS hack retreat
+{___|# 9th MirageOS hack retreat
 
-We invite you to participate in the eighth [MirageOS](https://mirage.io)
+We invite you to participate in the ninth [MirageOS](https://mirage.io)
 hack retreat!
 The goal is to sync various MirageOS subprojects, start new ones,
 and fix bugs.
 
-* *When?* September 23rd (arrival) - 29th (departure) 2019
+* *When?* March 13th (arrival) - March 19th (departure) 2020
 * *Where?* Marrakech, Morocco at [Priscilla, Queen of the Medina](http://queenofthemedina.com/en/index.html).
-* *How much?* 350 EUR<sup>&#9733;</sup>, accommodation and food (full board) included.
-* *How do I register?* Register by sending a mail to <retreat2019@nqsb.io> **by August 15th, 2019** including:
+* *How much?* TBA<sup>&#9733;</sup>, accommodation and food (full board) included.
+* *How do I register?* Register by sending a mail to <retreat2020@nqsb.io> **by February 1st, 2020** including:
    * How you became interested in MirageOS;
    * Previous experience with MirageOS and OCaml (no upfront experience required) ;
    * Project(s) you're interested to work on; and
@@ -39,7 +39,7 @@ and fix bugs.
 * *How big?* We have only limited space (30 people).  Selection will be done by various diversity criteria.
 * *How should I behave while there?* Be kind and empathetic to others; do not harrass or threaten anyone. If you make others unsafe, you may be asked to leave.
 
-<sup>&#9733;</sup>: If you cannot afford this, please contact us directly (at <retreat2019@nqsb.io>).
+<sup>&#9733;</sup>: If you cannot afford this, please contact us directly (at <retreat2020@nqsb.io>).
 
 <br/>
 
@@ -53,6 +53,7 @@ More information
 * We are also happy to pick you up at Jemaa el-Fnaa (phone number will be provided once you registered).
 
 Previous retreats:
+* 8th September 23rd - 29th 2019 in Marrakesh, reports: [curtisanne (OpenLab Augsburg), in german](https://openlab-augsburg.de/2019/10/lablinked-marrakesh-mirageos-retreat/) [comparing type classes with modules by mark karpov](https://markkarpov.com/post/what-does-a-humped-critter-have-to-teach-us.html)
 * 7th March 6th - 13th 2019 in Marrakesh, reports: [report](https://mirage.io/blog/2019-spring-retreat-roundup) [lynxis](https://lunarius.fe80.eu/blog/mirageos-2019.html) [gabriel](http://gallium.inria.fr/blog/marrakesh-retreat-03-2019/) [tarides](https://tarides.com/blog/2019-05-06-7th-mirageos-hack-retreat.html)
 * 6th October 3rd - 10th 2018 in Marrakesh
 * 5th March 7th - 18th 2018 in Marrakesh, reports: [linse](https://linse.me/2018/04/20/Visiting-the-camels.html), [peter](https://mirage.io/wiki/arm64)
