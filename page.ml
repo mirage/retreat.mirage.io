@@ -2,9 +2,9 @@ open Tyxml.Html
 
 let header t =
   head
-    (title (pcdata t))
+    (title (txt t))
     ([meta ~a:[a_charset "UTF-8"] ();
-      style [ pcdata
+      style [ txt
     {___|body {
            font-family: monospace;
            color: #333;
@@ -70,4 +70,4 @@ let rendered =
   html
     (header "MirageOS hack retreats")
     (body [ Unsafe.data content ]) ;
-  Cstruct.of_string @@ Buffer.contents buf
+  Cstruct.of_string (Buffer.contents buf)
