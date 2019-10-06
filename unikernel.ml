@@ -1,8 +1,6 @@
-open Mirage_types_lwt
 open Lwt.Infix
 
-module Main (S : STACKV4) =
-struct
+module Main (S : Mirage_stack_lwt.V4) = struct
   module TCP = S.TCPV4
 
   let http_header ~status xs =
@@ -22,12 +20,7 @@ struct
     TCP.writev tcp data >>= fun _ ->
     TCP.close tcp
 
-  let start stack _ info =
-    Logs.info (fun m -> m "used packages: %a"
-                  Fmt.(Dump.list @@ pair ~sep:(unit ".") string string)
-                  info.Mirage_info.packages) ;
-    Logs.info (fun m -> m "used libraries: %a"
-                  Fmt.(Dump.list string) info.Mirage_info.libraries) ;
+  let start stack =
     let data =
       let content_size = Cstruct.len Page.rendered in
       [ header content_size ; Page.rendered ]
