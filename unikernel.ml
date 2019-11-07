@@ -1,6 +1,6 @@
 open Lwt.Infix
 
-module Main (S : Mirage_stack_lwt.V4) = struct
+module Main (S : Mirage_stack.V4) = struct
   module TCP = S.TCPV4
 
   let http_header ~status xs =
