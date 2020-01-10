@@ -29,7 +29,7 @@ and fix bugs.
 
 * *When?* March 13th (arrival) - March 19th (departure) 2020
 * *Where?* Marrakech, Morocco at [Priscilla, Queen of the Medina](http://queenofthemedina.com/en/index.html).
-* *How much?* TBA<sup>&#9733;</sup>, accommodation and food (full board) included.
+* *How much?* 350 EUR<sup>&#9733;</sup>, accommodation and food (full board) included.
 * *How do I register?* Register by sending a mail to <retreat2020@nqsb.io> **by February 1st, 2020** including:
    * How you became interested in MirageOS;
    * Previous experience with MirageOS and OCaml (no upfront experience required) ;
