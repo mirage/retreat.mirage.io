@@ -28,7 +28,6 @@ let packages = [
 let () =
   register "retreat" [
     foreign
-      ~deps:[abstract app_info]
       ~keys:[ Key.abstract name ; Key.abstract syslog ; Key.abstract monitor ]
       ~packages
       "Unikernel.Main"

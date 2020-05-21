@@ -35,7 +35,7 @@ module Main (C : Mirage_console.S) (T : Mirage_time.S) (M : Mirage_clock.MCLOCK)
   module Monitoring = Monitoring_experiments.Make(T)(Management)
   module Syslog = Logs_syslog_mirage.Udp(C)(P)(Management)
 
-  let start c _time _mclock _pclock stack management info =
+  let start c _time _mclock _pclock stack management =
     let hostname = Key_gen.name ()
     and syslog = Key_gen.syslog ()
     and monitor = Key_gen.monitor ()
@@ -48,8 +48,6 @@ module Main (C : Mirage_console.S) (T : Mirage_time.S) (M : Mirage_clock.MCLOCK)
       Logs.warn (fun m -> m "no monitor specified, not outputting statistics")
     else
       Monitoring.create ~hostname monitor management;
-    List.iter (fun (p, v) -> Logs.app (fun m -> m "used package: %s %s" p v))
-      info.Mirage_info.packages;
     let data =
       let content_size = Cstruct.len Page.rendered in
       [ header content_size ; Page.rendered ]
