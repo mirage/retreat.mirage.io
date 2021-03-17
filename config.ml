@@ -23,7 +23,7 @@ let packages = [
   package "tyxml" ;
   package ~min:"3.7.1" "tcpip" ;
   package ~min:"0.0.2" "monitoring-experiments" ;
-  package ~sublibs:["mirage"] "logs-syslog" ;
+  package ~sublibs:["mirage"] ~min:"0.3.0" "logs-syslog" ;
 ]
 
 let () =
