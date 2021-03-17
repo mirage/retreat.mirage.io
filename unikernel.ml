@@ -1,6 +1,6 @@
 open Lwt.Infix
 
-module Main (C : Mirage_console.S) (T : Mirage_time.S) (M : Mirage_clock.MCLOCK) (P : Mirage_clock.PCLOCK) (S : Mirage_stack.V4) (Management : Mirage_stack.V4) = struct
+module Main (C : Mirage_console.S) (T : Mirage_time.S) (P : Mirage_clock.PCLOCK) (S : Mirage_stack.V4) (Management : Mirage_stack.V4V6) = struct
   module TCP = S.TCPV4
 
   let http_header ~status xs =
@@ -35,19 +35,14 @@ module Main (C : Mirage_console.S) (T : Mirage_time.S) (M : Mirage_clock.MCLOCK)
   module Monitoring = Monitoring_experiments.Make(T)(Management)
   module Syslog = Logs_syslog_mirage.Udp(C)(P)(Management)
 
-  let start c _time _mclock _pclock stack management =
-    let hostname = Key_gen.name ()
-    and syslog = Key_gen.syslog ()
-    and monitor = Key_gen.monitor ()
-    in
-    if Ipaddr.V4.compare syslog Ipaddr.V4.unspecified = 0 then
-      Logs.warn (fun m -> m "no syslog specified, dumping on stdout")
-    else
-      Logs.set_reporter (Syslog.create c management syslog ~hostname ());
-    if Ipaddr.V4.compare monitor Ipaddr.V4.unspecified = 0 then
-      Logs.warn (fun m -> m "no monitor specified, not outputting statistics")
-    else
-      Monitoring.create ~hostname monitor management;
+  let start c _time _pclock stack management =
+    let hostname = Key_gen.name () in
+    (match Key_gen.syslog () with
+     | None -> Logs.warn (fun m -> m "no syslog specified, dumping on stdout")
+     | Some ip -> Logs.set_reporter (Syslog.create c management ip ~hostname ()));
+    (match Key_gen.monitor () with
+     | None -> Logs.warn (fun m -> m "no monitor specified, not outputting statistics")
+     | Some ip -> Monitoring.create ~hostname ip management);
     let data =
       let content_size = Cstruct.len Page.rendered in
       [ header content_size ; Page.rendered ]
