@@ -22,7 +22,7 @@ let content =
   Omd.to_html (Omd.of_string
 {___|# 10th MirageOS hack retreat
 
-We invite you to participate in the ninth [MirageOS](https://mirage.io)
+We invite you to participate in the tenth [MirageOS](https://mirage.io)
 hack retreat!
 The goal is to sync various MirageOS subprojects, start new ones,
 and fix bugs.
@@ -47,11 +47,6 @@ and fix bugs.
 More information
 * Once you've signed up, you will subscribed to the participants mailing list.
 * You can work on anything but if you need inspiration, browse the [projects](http://canopy.mirage.io/tags/help%20needed) which need help.
-* The nearest airport is [Marrakesh Menara Airport (RAK)](https://en.wikipedia.org/wiki/Marrakesh_Menara_Airport).  There is also Marrakesh Railway Station (train service from and to Tangier, reachable from Spain by ferry).
-* From airport or railway station, take a cab to **Jemaa el-Fnaa** (city centre).
-* Follow the [map](https://raw.githubusercontent.com/mirage/marrakech2017/master/data/map.jpg), the address is **27 Derb el Ferrane Azbezt**.
-* A [video](https://www.youtube.com/watch?v=zgzwmyxlKBE) contains detailed descriptions.
-* We are also happy to pick you up at Jemaa el-Fnaa (phone number will be provided once you registered).
 
 Previous retreats:
 * 9th March 13th - 19th 2020 in Marrakesh
