@@ -29,7 +29,7 @@ and fix bugs.
 
 * *When?* November 8th (arrival) - November 14th (departure) 2021
 * *Where?* Mirleft, Marocco
-* *Travelling information* To enter Morocco, you need a vaccination certificate and a negative PCR test.
+* *Travelling information* To enter Morocco, you need a vaccination certificate and a negative PCR test. Next airport is Agadir.
 * *How much?* 450 EUR<sup>&#9733;</sup>, accommodation (single rooms) and food (full board) included. No refunds possible.
 * *How do I register?* Register by sending a mail to <retreat2021@nqsb.io> **by September 20th, 2021** including:
    * How you became interested in MirageOS;
