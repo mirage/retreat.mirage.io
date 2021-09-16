@@ -40,7 +40,7 @@ and fix bugs.
 * *How big?* We have only limited space (25 people).  Selection will be done by various diversity criteria.
 * *How should I behave while there?* Be kind and empathetic to others; do not harrass or threaten anyone. If you make others unsafe, you may be asked to leave.
 
-<sup>&#9733;</sup>: If you cannot afford this, please contact us directly (at <retreat2020@nqsb.io>).
+<sup>&#9733;</sup>: If you cannot afford this, please contact us directly (at <retreat2021@nqsb.io>).
 
 <br/>
 
