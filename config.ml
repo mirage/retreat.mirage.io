@@ -12,7 +12,7 @@ let name =
   let doc = Key.Arg.info ~doc:"Name of the unikernel" ["name"] in
   Key.(create "name" Arg.(opt string "retreat.mirage.io" doc))
 
-let net = generic_stackv4 default_network
+let net = generic_stackv4v6 default_network
 
 let management_stack =
   generic_stackv4v6 ~group:"management" (netif ~group:"management" "management")
@@ -32,6 +32,6 @@ let () =
       ~keys:[ Key.abstract name ; Key.abstract syslog ; Key.abstract monitor ]
       ~packages
       "Unikernel.Main"
-    (console @-> time @-> pclock @-> stackv4 @-> stackv4v6 @-> job)
+    (console @-> time @-> pclock @-> stackv4v6 @-> stackv4v6 @-> job)
     $ default_console $ default_time $ default_posix_clock $ net $ management_stack
   ]

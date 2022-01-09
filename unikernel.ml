@@ -1,8 +1,6 @@
 open Lwt.Infix
 
-module Main (C : Mirage_console.S) (T : Mirage_time.S) (P : Mirage_clock.PCLOCK) (S : Mirage_stack.V4) (Management : Mirage_stack.V4V6) = struct
-  module TCP = S.TCPV4
-
+module Main (C : Mirage_console.S) (T : Mirage_time.S) (P : Mirage_clock.PCLOCK) (S : Tcpip.Stack.V4V6) (Management : Tcpip.Stack.V4V6) = struct
   let http_header ~status xs =
     let headers = List.map (fun (k, v) -> k ^ ": " ^ v) xs in
     let lines = status :: headers @ [ "\r\n" ] in
@@ -29,8 +27,8 @@ module Main (C : Mirage_console.S) (T : Mirage_time.S) (P : Mirage_clock.PCLOCK)
 
   let serve data tcp =
     incr_access ();
-    TCP.writev tcp data >>= fun _ ->
-    TCP.close tcp
+    S.TCP.writev tcp data >>= fun _ ->
+    S.TCP.close tcp
 
   module Monitoring = Monitoring_experiments.Make(T)(Management)
   module Syslog = Logs_syslog_mirage.Udp(C)(P)(Management)
@@ -44,9 +42,9 @@ module Main (C : Mirage_console.S) (T : Mirage_time.S) (P : Mirage_clock.PCLOCK)
      | None -> Logs.warn (fun m -> m "no monitor specified, not outputting statistics")
      | Some ip -> Monitoring.create ~hostname ip management);
     let data =
-      let content_size = Cstruct.len Page.rendered in
+      let content_size = Cstruct.length Page.rendered in
       [ header content_size ; Page.rendered ]
     in
-    S.listen_tcpv4 stack ~port:80 (serve data) ;
+    S.TCP.listen (S.tcp stack) ~port:80 (serve data) ;
     S.listen stack
 end
