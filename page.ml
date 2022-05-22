@@ -20,18 +20,18 @@ let header t =
 
 let content =
   Omd.to_html (Omd.of_string
-{___|# 10th MirageOS hack retreat
+{___|# 11th MirageOS hack retreat
 
 We invite you to participate in the tenth [MirageOS](https://mirage.io)
 hack retreat!
 The goal is to sync various MirageOS subprojects, start new ones,
 and fix bugs.
 
-* *When?* November 8th (arrival) - November 14th (departure) 2021
-* *Where?* Mirleft, Marocco
+* *When?* TBD
+* *Where?* TBD
 * *Travelling information* To enter Morocco, you need a vaccination certificate and a negative PCR test. Next airport is Agadir.
-* *How much?* 450 EUR<sup>&#9733;</sup>, accommodation (single rooms) and food (full board) included. No refunds possible.
-* *How do I register?* Register by sending a mail to <retreat2021@nqsb.io> **by September 20th, 2021** including:
+* *How much?* TBD
+* *How do I register?* Register by sending a mail to TBD including:
    * How you became interested in MirageOS;
    * Previous experience with MirageOS and OCaml (no upfront experience required) ;
    * Project(s) you're interested to work on; and
@@ -50,7 +50,8 @@ More information
 * Travel to Agadir, from there take the bus or a taxi to Mirleft.
 
 Previous retreats:
-* 9th March 13th - 19th 2020 in Marrakesh
+* 10th November 8th - 14th 2021 in Mirleft (cancelled due to Covid19)
+* 9th March 13th - 19th 2020 in Marrakesh (partially cancelled due to Covid19)
 * 8th September 23rd - 29th 2019 in Marrakesh, reports: [curtisanne (OpenLab Augsburg), in german](https://openlab-augsburg.de/2019/10/lablinked-marrakesh-mirageos-retreat/) [comparing type classes with modules by mark karpov](https://markkarpov.com/post/what-does-a-humped-critter-have-to-teach-us.html)
 * 7th March 6th - 13th 2019 in Marrakesh, reports: [report](https://mirage.io/blog/2019-spring-retreat-roundup) [lynxis](https://lunarius.fe80.eu/blog/mirageos-2019.html) [gabriel](http://gallium.inria.fr/blog/marrakesh-retreat-03-2019/) [tarides](https://tarides.com/blog/2019-05-06-7th-mirageos-hack-retreat.html)
 * 6th October 3rd - 10th 2018 in Marrakesh

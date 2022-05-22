@@ -30,7 +30,7 @@ module Main (C : Mirage_console.S) (T : Mirage_time.S) (P : Mirage_clock.PCLOCK)
     S.TCP.writev tcp data >>= fun _ ->
     S.TCP.close tcp
 
-  module Monitoring = Monitoring_experiments.Make(T)(Management)
+  module Monitoring = Mirage_monitoring.Make(T)(P)(Management)
   module Syslog = Logs_syslog_mirage.Udp(C)(P)(Management)
 
   let start c _time _pclock stack management =
