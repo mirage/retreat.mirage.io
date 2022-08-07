@@ -29,7 +29,7 @@ let packages = [
 let () =
   register "retreat" [
     foreign
-      ~keys:[ Key.v name ; Key.v syslog ; Key.v monitor ]
+      ~keys:[ Key.abstract name ; Key.abstract syslog ; Key.abstract monitor ]
       ~packages
       "Unikernel.Main"
     (console @-> time @-> pclock @-> stackv4v6 @-> stackv4v6 @-> job)
