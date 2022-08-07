@@ -22,16 +22,16 @@ let content =
   Omd.to_html (Omd.of_string
 {___|# 11th MirageOS hack retreat
 
-We invite you to participate in the tenth [MirageOS](https://mirage.io)
+We invite you to participate in the eleventh [MirageOS](https://mirage.io)
 hack retreat!
 The goal is to sync various MirageOS subprojects, start new ones,
 and fix bugs.
 
-* *When?* TBD
-* *Where?* TBD
-* *Travelling information* To enter Morocco, you need a vaccination certificate and a negative PCR test. Next airport is Agadir.
-* *How much?* TBD
-* *How do I register?* Register by sending a mail to TBD including:
+* *When?* October 3rd (arrival) - 9th (departure)
+* *Where?* Mirleft, Morocco
+* *Travelling information* Next airport is Agadir. Please check travel restrictions from your country to Morocco before registering.
+* *How much?* 450 EUR<sup>&#9733;</sup>, accommodation (single rooms) and food (full board) included. No refunds possible.
+* *How do I register?* Register by sending a mail to <retreat2022@nqsb.io> **by September 1st, 2022** including:
    * How you became interested in MirageOS;
    * Previous experience with MirageOS and OCaml (no upfront experience required) ;
    * Project(s) you're interested to work on; and
