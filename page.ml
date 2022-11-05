@@ -50,7 +50,7 @@ More information
 * Travel to Agadir, from there take the bus or a taxi to Mirleft.
 
 Previous retreats:
-* 11th October 3rd - 9th 2022 in Mirleft, reports: [Raphaël Proust](https://raphael-proust.gitlab.io/code/mirage-retreat-2022-10.html) [Jules, Sayo, Enguerrand, Sonja, Jan, Lucas](https://tarides.com/blog/2022-10-28-the-mirageos-retreat-a-journey-of-food-cats-and-unikernels) [Pierre](http://blog.enssat.fr/2022/10/pierre-alain-enssat-teacher-at-11th.html)
+* 11th October 3rd - 9th 2022 in Mirleft, reports: [Raphaël Proust](https://raphael-proust.gitlab.io/code/mirage-retreat-2022-10.html) [Jules, Sayo, Enguerrand, Sonja, Jan, Lucas](https://tarides.com/blog/2022-10-28-the-mirageos-retreat-a-journey-of-food-cats-and-unikernels) [Pierre](http://blog.enssat.fr/2022/10/pierre-alain-enssat-teacher-at-11th.html) [mirage.io](https://mirage.io/blog/2022-11-07.retreat)
 * 10th November 8th - 14th 2021 in Mirleft (cancelled due to Covid19)
 * 9th March 13th - 19th 2020 in Marrakesh (partially cancelled due to Covid19)
 * 8th September 23rd - 29th 2019 in Marrakesh, reports: [curtisanne (OpenLab Augsburg), in german](https://openlab-augsburg.de/2019/10/lablinked-marrakesh-mirageos-retreat/) [comparing type classes with modules by mark karpov](https://markkarpov.com/post/what-does-a-humped-critter-have-to-teach-us.html)
