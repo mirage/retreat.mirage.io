@@ -20,7 +20,7 @@ let management_stack =
 let packages = [
   package ~sublibs:["lwt"] "logs" ;
   package "omd" ;
-  package "tyxml" ;
+  package ~min:"4.5.0" "tyxml" ;
   package ~min:"3.7.1" "tcpip" ;
   package "mirage-monitoring" ;
   package ~sublibs:["mirage"] ~min:"0.3.0" "logs-syslog" ;
