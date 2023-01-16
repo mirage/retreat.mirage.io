@@ -20,18 +20,18 @@ let header t =
 
 let content =
   Omd.to_html (Omd.of_string
-{___|# 11th MirageOS hack retreat
+{___|# 12th MirageOS hack retreat
 
-We invite you to participate in the eleventh [MirageOS](https://mirage.io)
+We invite you to participate in the twelfth [MirageOS](https://mirage.io)
 hack retreat!
 The goal is to sync various MirageOS subprojects, start new ones,
 and fix bugs.
 
-* *When?* October 3rd (arrival) - 9th (departure)
-* *Where?* Mirleft, Morocco
-* *Travelling information* Next airport is Agadir. Please check travel restrictions from your country to Morocco before registering.
-* *How much?* 450 EUR<sup>&#9733;</sup>, accommodation (single rooms) and food (full board) included. No refunds possible.
-* *How do I register?* Register by sending a mail to <retreat2022@nqsb.io> **by September 1st, 2022** including:
+* *When?* May 1st (arrival) - 7th (departure)
+* *Where?* Marrakesh, Morocco
+* *Travelling information* Please check travel restrictions from your country to Morocco before registering.
+* *How much?* 450 EUR<sup>&#9733;</sup>, accommodation and food (full board) included. No refunds possible.
+* *How do I register?* Register by sending a mail to <retreat2023@nqsb.io> **by April 1st, 2023** including:
    * How you became interested in MirageOS;
    * Previous experience with MirageOS and OCaml (no upfront experience required) ;
    * Project(s) you're interested to work on; and
@@ -40,14 +40,18 @@ and fix bugs.
 * *How big?* We have only limited space (25 people).  Selection will be done by various diversity criteria.
 * *How should I behave while there?* Be kind and empathetic to others; do not harrass or threaten anyone. If you make others unsafe, you may be asked to leave.
 
-<sup>&#9733;</sup>: If you cannot afford this, please contact us directly (at <retreat2022@nqsb.io>).
+<sup>&#9733;</sup>: If you cannot afford this, please contact us directly (at <retreat2023@nqsb.io>).
 
 <br/>
 
 More information
 * Once you've signed up, you will subscribed to the participants mailing list.
-* You can work on anything but if you need inspiration, browse the [projects](http://canopy.mirage.io/tags/help%20needed) which need help.
-* Travel to Agadir, from there take the bus or a taxi to Mirleft.
+* You can work on anything but if you need inspiration, browse the [open issues](https://github.com/search?q=is%3Aopen+org%3Amirage.
+* The nearest airport is [Marrakesh Menara Airport (RAK)](https://en.wikipedia.org/wiki/Marrakesh_Menara_Airport).  There is also Marrakesh Railway Station (train service from and to Tangier, reachable from Spain by ferry).
+* From airport or railway station, take a cab to **Jemaa el-Fnaa** (city centre).
+* Follow the [map](https://raw.githubusercontent.com/mirage/marrakech2017/master/data/map.jpg), the address is **27 Derb el Ferrane Azbezt**.
+* A [video](https://www.youtube.com/watch?v=zgzwmyxlKBE) contains detailed descriptions.
+* We are also happy to pick you up at Jemaa el-Fnaa (phone number will be provided once you registered).
 
 Previous retreats:
 * 11th October 3rd - 9th 2022 in Mirleft, reports: [Raphaël Proust](https://raphael-proust.gitlab.io/code/mirage-retreat-2022-10.html) [Jules, Sayo, Enguerrand, Sonja, Jan, Lucas](https://tarides.com/blog/2022-10-28-the-mirageos-retreat-a-journey-of-food-cats-and-unikernels) [Pierre](http://blog.enssat.fr/2022/10/pierre-alain-enssat-teacher-at-11th.html) [mirage.io](https://mirage.io/blog/2022-11-07.retreat)
