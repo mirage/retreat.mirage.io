@@ -35,7 +35,7 @@ let management_stack =
 
 let packages = [
   package ~sublibs:["lwt"] "logs" ;
-  package "omd" ;
+  package ~max:"2.0.0~alpha3" "omd" ;
   package ~min:"4.5.0" "tyxml" ;
   package ~min:"3.7.1" "tcpip" ;
   package "mirage-monitoring" ;
