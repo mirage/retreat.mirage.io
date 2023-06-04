@@ -39,7 +39,7 @@ let packages = [
   package ~min:"4.5.0" "tyxml" ;
   package ~min:"3.7.1" "tcpip" ;
   package "mirage-monitoring" ;
-  package ~sublibs:["mirage"] ~min:"0.3.0" "logs-syslog" ;
+  package ~sublibs:["mirage"] ~min:"0.4.0" "logs-syslog" ;
   package ~min:"6.1.1" ~sublibs:["mirage"] "dns-certify";
   package "tls-mirage";
   package ~min:"4.3.1" "mirage-runtime";
@@ -54,6 +54,6 @@ let () =
       ]
       ~packages
       "Unikernel.Main"
-    (console @-> random @-> time @-> pclock @-> stackv4v6 @-> stackv4v6 @-> job)
-    $ default_console $ default_random $ default_time $ default_posix_clock $ net $ management_stack
+    (random @-> time @-> pclock @-> stackv4v6 @-> stackv4v6 @-> job)
+    $ default_random $ default_time $ default_posix_clock $ net $ management_stack
   ]

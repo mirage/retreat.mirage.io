@@ -1,6 +1,6 @@
 open Lwt.Infix
 
-module Main (C : Mirage_console.S) (R : Mirage_random.S) (T : Mirage_time.S) (P : Mirage_clock.PCLOCK) (S : Tcpip.Stack.V4V6) (Management : Tcpip.Stack.V4V6) = struct
+module Main (R : Mirage_random.S) (T : Mirage_time.S) (P : Mirage_clock.PCLOCK) (S : Tcpip.Stack.V4V6) (Management : Tcpip.Stack.V4V6) = struct
   module Dns_certify = Dns_certify_mirage.Make(R)(P)(T)(S)
   module TLS = Tls_mirage.Make(S.TCP)
 
@@ -44,13 +44,13 @@ module Main (C : Mirage_console.S) (R : Mirage_random.S) (T : Mirage_time.S) (P 
       S.TCP.close tcp_flow
 
   module Monitoring = Mirage_monitoring.Make(T)(P)(Management)
-  module Syslog = Logs_syslog_mirage.Udp(C)(P)(Management)
+  module Syslog = Logs_syslog_mirage.Udp(P)(Management)
 
-  let start c _random _time _pclock stack management =
+  let start _random _time _pclock stack management =
     let hostname = Key_gen.name () in
     (match Key_gen.syslog () with
      | None -> Logs.warn (fun m -> m "no syslog specified, dumping on stdout")
-     | Some ip -> Logs.set_reporter (Syslog.create c management ip ~hostname ()));
+     | Some ip -> Logs.set_reporter (Syslog.create management ip ~hostname ()));
     (match Key_gen.monitor () with
      | None -> Logs.warn (fun m -> m "no monitor specified, not outputting statistics")
      | Some ip -> Monitoring.create ~hostname ip management);
