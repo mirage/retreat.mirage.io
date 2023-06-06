@@ -55,32 +55,37 @@ module Main (R : Mirage_random.S) (T : Mirage_time.S) (P : Mirage_clock.PCLOCK) 
      | None -> Logs.warn (fun m -> m "no monitor specified, not outputting statistics")
      | Some ip -> Monitoring.create ~hostname ip management);
     let hostname = Domain_name.(host_exn (of_string_exn hostname)) in
-    let key_type, key_data, key_seed =
-      match String.split_on_char ':' (Key_gen.key ()) with
-      | [ typ ; data ] ->
-        (match X509.Key_type.of_string typ with
-         | Ok `RSA -> `RSA, None, Some data
-         | Ok x -> x, Some data, None
-         | Error `Msg msg ->
-           Logs.err (fun m -> m "Error decoding key type: %s" msg);
-           exit Mirage_runtime.argument_error)
-      | _ ->
-        Logs.err (fun m -> m "expected for key type:data");
-        exit Mirage_runtime.argument_error
+    let data =
+      let content_size = Cstruct.length Page.rendered in
+      [ header content_size ; Page.rendered ]
     in
-    Dns_certify.retrieve_certificate
-      stack ~dns_key:(Key_gen.dns_key ())
-      ~hostname ~key_type ?key_data ?key_seed
-      (Key_gen.dns_server ()) (Key_gen.dns_port ()) >>= function
-    | Error (`Msg m) -> Lwt.fail_with m
-    | Ok certificates ->
-      let certificates = `Single certificates in
-      let tls_config = Tls.Config.server ~certificates () in
-      let data =
-        let content_size = Cstruct.length Page.rendered in
-        [ header content_size ; Page.rendered ]
-      in
-      S.TCP.listen (S.tcp stack) ~port:80 (serve data) ;
-      S.TCP.listen (S.tcp stack) ~port:443 (serve_tls tls_config data);
-      S.listen stack
+    (if not (Key_gen.no_tls ()) then
+       let key_type, key_data, key_seed =
+         match String.split_on_char ':' (Key_gen.key ()) with
+         | [ typ ; data ] ->
+           (match X509.Key_type.of_string typ with
+            | Ok `RSA -> `RSA, None, Some data
+            | Ok x -> x, Some data, None
+            | Error `Msg msg ->
+              Logs.err (fun m -> m "Error decoding key type: %s" msg);
+              exit Mirage_runtime.argument_error)
+         | _ ->
+           Logs.err (fun m -> m "expected for key type:data");
+           exit Mirage_runtime.argument_error
+       in
+       Dns_certify.retrieve_certificate
+         stack ~dns_key:(Key_gen.dns_key ())
+         ~hostname ~key_type ?key_data ?key_seed
+         (Key_gen.dns_server ()) (Key_gen.dns_port ()) >|= function
+       | Error (`Msg msg) ->
+         Logs.err (fun m -> m "error while requesting certificate: %s" msg);
+         exit Mirage_runtime.argument_error
+       | Ok certificates ->
+         let certificates = `Single certificates in
+         let tls_config = Tls.Config.server ~certificates () in
+         S.TCP.listen (S.tcp stack) ~port:443 (serve_tls tls_config data)
+     else
+       Lwt.return_unit) >>= fun () ->
+    S.TCP.listen (S.tcp stack) ~port:80 (serve data) ;
+    S.listen stack
 end

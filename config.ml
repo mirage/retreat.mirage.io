@@ -28,15 +28,18 @@ let name =
   let doc = Key.Arg.info ~doc:"Name of the unikernel" ["name"] in
   Key.(create "name" Arg.(opt string "retreat.mirage.io" doc))
 
+let no_tls =
+  let doc = Key.Arg.info ~doc:"Disable TLS" [ "no-tls" ] in
+  Key.(create "no-tls" Arg.(flag doc))
+
 let net = generic_stackv4v6 default_network
 
 let management_stack =
   generic_stackv4v6 ~group:"management" (netif ~group:"management" "management")
 
 let packages = [
-  package ~sublibs:["lwt"] "logs" ;
-  package ~max:"2.0.0~alpha3" "omd" ;
-  package ~min:"4.5.0" "tyxml" ;
+  package "logs" ;
+  package "cmarkit" ;
   package ~min:"3.7.1" "tcpip" ;
   package "mirage-monitoring" ;
   package ~sublibs:["mirage"] ~min:"0.4.0" "logs-syslog" ;
@@ -50,7 +53,7 @@ let () =
     foreign
       ~keys:[
         Key.v dns_key ; Key.v dns_server ; Key.v dns_port ; Key.v key ;
-        Key.v name ; Key.v syslog ; Key.v monitor
+        Key.v name ; Key.v syslog ; Key.v monitor ; Key.v no_tls ;
       ]
       ~packages
       "Unikernel.Main"

@@ -1,25 +1,23 @@
-open Tyxml.Html
-
 let header t =
-  head
-    (title (txt t))
-    ([meta ~a:[a_charset "UTF-8"] ();
-      style [ txt
-    {___|body {
-           font-family: monospace;
-           color: #333;
-           margin: 2% 0 10% 15%;
-           width: 45%;
-         }
-         a, a:visited {
-           color: #333;
-           text-decoration: none;
-           font-weight: bold;
-         }|___} ]
-        ])
+  Printf.sprintf
+    {|<title>%s</title>
+ <meta charset="UTF-8"/>
+      <style>
+body {
+ font-family: monospace;
+ color: #333;
+ margin: 2%% 0 10%% 15%%;
+ width: 45%%;
+}
+ a, a:visited {
+ color: #333;
+ text-decoration: none;
+ font-weight: bold;
+}
+    </style>|} t
 
 let content =
-  Omd.to_html (Omd.of_string
+  Cmarkit_html.of_doc ~safe:false (Cmarkit.Doc.of_string
 {___|# 12th MirageOS hack retreat
 
 We invite you to participate in the twelfth [MirageOS](https://mirage.io)
@@ -68,10 +66,8 @@ Previous retreats:
 |___})
 
 let rendered =
-  let buf = Buffer.create 500 in
-  let fmt = Format.formatter_of_buffer buf in
-  pp () fmt @@
-  html
-    (header "MirageOS hack retreats")
-    (body [ Unsafe.data content ]) ;
-  Cstruct.of_string (Buffer.contents buf)
+  let hdr = header "MirageOS hack retreats"
+  and body = content
+  in
+  Cstruct.of_string
+    (String.concat "" [ "<html><head>" ; hdr ; "</head><body>" ; body ; "</body></html>" ])
