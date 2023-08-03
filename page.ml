@@ -23,7 +23,7 @@ let content =
 We invite you to participate in the thirteenth [MirageOS](https://mirage.io) hack retreat!
 The goal is to sync various MirageOS subprojects, start new ones, and fix bugs.
 
-* *When?* November 20th (arrival) - 26th (departure)
+* *When?* November 20th (arrival) - 26th (departure) 2023
 * *Where?* Marrakesh, Morocco
 * *Travelling information* Please check travel restrictions from your country to Morocco before registering.
 * *How much?* 500 EUR<sup>&#9733;</sup>, accommodation and food (full board) included. No refunds possible.
