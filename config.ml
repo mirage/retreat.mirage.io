@@ -32,7 +32,34 @@ let no_tls =
   let doc = Key.Arg.info ~doc:"Disable TLS" [ "no-tls" ] in
   Key.(create "no-tls" Arg.(flag doc))
 
-let net = generic_stackv4v6 default_network
+(* uTCP *)
+
+let tcpv4v6_direct_conf id =
+  let packages_v = Key.pure [ package "utcp" ~sublibs:[ "mirage" ] ] in
+  let connect _ modname = function
+    | [_random; _mclock; _time; ip] ->
+      Fmt.str "Lwt.return (%s.connect %S %s)" modname id ip
+    | _ -> failwith "direct tcpv4v6"
+  in
+  impl ~packages_v ~connect "Utcp_mirage.Make"
+    (random @-> mclock @-> time @-> ipv4v6 @-> (tcp: 'a tcp typ))
+
+let direct_tcpv4v6
+    ?(clock=default_monotonic_clock)
+    ?(random=default_random)
+    ?(time=default_time) id ip =
+  tcpv4v6_direct_conf id $ random $ clock $ time $ ip
+
+let net =
+  let ethernet = etif default_network in
+  let arp = arp ethernet in
+  let i4 = create_ipv4 ethernet arp in
+  let i6 = create_ipv6 default_network ethernet in
+  let i4i6 = create_ipv4v6 i4 i6 in
+  let tcpv4v6 = direct_tcpv4v6 "service" i4i6 in
+  let ipv4_only = Key.ipv4_only () in
+  let ipv6_only = Key.ipv6_only () in
+  direct_stackv4v6 ~tcp:tcpv4v6 ~ipv4_only ~ipv6_only default_network ethernet arp i4 i6
 
 let management_stack =
   generic_stackv4v6 ~group:"management" (netif ~group:"management" "management")
