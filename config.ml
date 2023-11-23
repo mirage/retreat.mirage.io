@@ -1,3 +1,4 @@
+(* mirage >= 4.4.1 & < 4.5.0 *)
 open Mirage
 
 let dns_key =
@@ -50,19 +51,22 @@ let direct_tcpv4v6
     ?(time=default_time) id ip =
   tcpv4v6_direct_conf id $ random $ clock $ time $ ip
 
-let net =
-  let ethernet = etif default_network in
+let net ?group name netif =
+  let ethernet = etif netif in
   let arp = arp ethernet in
-  let i4 = create_ipv4 ethernet arp in
-  let i6 = create_ipv6 default_network ethernet in
-  let i4i6 = create_ipv4v6 i4 i6 in
-  let tcpv4v6 = direct_tcpv4v6 "service" i4i6 in
-  let ipv4_only = Key.ipv4_only () in
-  let ipv6_only = Key.ipv6_only () in
-  direct_stackv4v6 ~tcp:tcpv4v6 ~ipv4_only ~ipv6_only default_network ethernet arp i4 i6
+  let i4 = create_ipv4 ?group ethernet arp in
+  let i6 = create_ipv6 ?group netif ethernet in
+  let i4i6 = create_ipv4v6 ?group i4 i6 in
+  let tcpv4v6 = direct_tcpv4v6 name i4i6 in
+  let ipv4_only = Key.ipv4_only ?group () in
+  let ipv6_only = Key.ipv6_only ?group () in
+  direct_stackv4v6 ~tcp:tcpv4v6 ~ipv4_only ~ipv6_only netif ethernet arp i4 i6
 
 let management_stack =
-  generic_stackv4v6 ~group:"management" (netif ~group:"management" "management")
+  let netif = netif ~group:"management" "management" in
+  net ~group:"management" "management" netif
+
+let net = net "service" default_network
 
 let packages = [
   package "logs" ;
