@@ -26,7 +26,7 @@ The goal is to sync various MirageOS subprojects, start new ones, and fix bugs.
 * *When?* April 22nd (arrival) - 28th (departure) 2024
 * *Where?* Marrakesh, Morocco
 * *Travelling information* Please check travel restrictions from your country to Morocco before registering.
-* *How much?* 550 EUR<sup>&#9733;</sup> (10% discount for early bird if you pay until Feb 28th), accommodation and food (full board) included. No refunds possible.
+* *How much?* 550 EUR<sup>&#9733;</sup> (10% discount for early birds if you register before Feb 15th and pay before Feb 28th), accommodation and food (full board) included. No refunds possible.
 * *How do I register?* Register by sending a mail to <retreat2024@nqsb.io> **by March 15th, 2024** including:
    * How you became interested in MirageOS;
    * Previous experience with MirageOS and OCaml (no upfront experience required);
