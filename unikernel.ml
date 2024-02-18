@@ -43,18 +43,8 @@ module Main (R : Mirage_random.S) (T : Mirage_time.S) (P : Mirage_clock.PCLOCK) 
       Logs.warn (fun m -> m "TLS error %a" TLS.pp_write_error e);
       S.TCP.close tcp_flow
 
-  module Monitoring = Mirage_monitoring.Make(T)(P)(Management)
-  module Syslog = Logs_syslog_mirage.Udp(P)(Management)
-
   let start _random _time _pclock stack management =
-    let hostname = Key_gen.name () in
-    (match Key_gen.syslog () with
-     | None -> Logs.warn (fun m -> m "no syslog specified, dumping on stdout")
-     | Some ip -> Logs.set_reporter (Syslog.create management ip ~hostname ()));
-    (match Key_gen.monitor () with
-     | None -> Logs.warn (fun m -> m "no monitor specified, not outputting statistics")
-     | Some ip -> Monitoring.create ~hostname ip management);
-    let hostname = Domain_name.(host_exn (of_string_exn hostname)) in
+    let hostname = Domain_name.(host_exn (of_string_exn (Key_gen.name ()))) in
     let data =
       let content_size = Cstruct.length Page.rendered in
       [ header content_size ; Page.rendered ]

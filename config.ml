@@ -1,4 +1,4 @@
-(* mirage >= 4.4.1 & < 4.5.0 *)
+(* mirage >= 4.4.2 & < 4.5.0 *)
 open Mirage
 
 let dns_key =
@@ -17,17 +17,9 @@ let key =
   let doc = Key.Arg.info ~doc:"certificate key (<type>:seed or b64)" ["key"] in
   Key.(create "key" Arg.(required string doc))
 
-let monitor =
-  let doc = Key.Arg.info ~doc:"monitor host IP" ["monitor"] in
-  Key.(create "monitor" Arg.(opt (some ip_address) None doc))
-
-let syslog =
-  let doc = Key.Arg.info ~doc:"syslog host IP" ["syslog"] in
-  Key.(create "syslog" Arg.(opt (some ip_address) None doc))
-
 let name =
   let doc = Key.Arg.info ~doc:"Name of the unikernel" ["name"] in
-  Key.(create "name" Arg.(opt string "retreat.mirage.io" doc))
+  Key.(v (create "name" Arg.(opt string "retreat.mirage.io" doc)))
 
 let no_tls =
   let doc = Key.Arg.info ~doc:"Disable TLS" [ "no-tls" ] in
@@ -62,18 +54,73 @@ let net ?group name netif =
   let ipv6_only = Key.ipv6_only ?group () in
   direct_stackv4v6 ~tcp:tcpv4v6 ~ipv4_only ~ipv6_only netif ethernet arp i4 i6
 
-let management_stack =
-  let netif = netif ~group:"management" "management" in
-  net ~group:"management" "management" netif
-
 let net = net "service" default_network
+
+let enable_monitoring =
+  let doc =
+    Key.Arg.info ~doc:"Enable monitoring (only available for solo5 targets)"
+      [ "enable-monitoring" ]
+  in
+  Key.(create "enable-monitoring" Arg.(flag ~stage:`Configure doc))
+
+let management_stack =
+  if_impl
+    (Key.value enable_monitoring)
+    (generic_stackv4v6 ~group:"management"
+       (netif ~group:"management" "management"))
+    net
+
+let monitoring =
+  let monitor =
+    let doc = Key.Arg.info ~doc:"monitor host IP" [ "monitor" ] in
+    Key.(v (create "monitor" Arg.(opt (some ip_address) None doc)))
+  in
+  let connect _ modname = function
+    | [ _; _; stack ] ->
+        Fmt.str
+          "Lwt.return (match %a with| None -> Logs.warn (fun m -> m \"no \
+           monitor specified, not outputting statistics\")| Some ip -> \
+           %s.create ip ~hostname:%a %s)"
+          Key.serialize_call monitor modname Key.serialize_call name stack
+    | _ -> assert false
+  in
+  impl
+    ~packages:[ package "mirage-monitoring" ]
+    ~keys:[ name; monitor ] ~connect "Mirage_monitoring.Make"
+    (time @-> pclock @-> stackv4v6 @-> job)
+
+let syslog =
+  let syslog =
+    let doc = Key.Arg.info ~doc:"syslog host IP" [ "syslog" ] in
+    Key.(v (create "syslog" Arg.(opt (some ip_address) None doc)))
+  in
+  let connect _ modname = function
+    | [ _; stack ] ->
+        Fmt.str
+          "Lwt.return (match %a with| None -> Logs.warn (fun m -> m \"no \
+           syslog specified, dumping on stdout\")| Some ip -> \
+           Logs.set_reporter (%s.create %s ip ~hostname:%a ()))"
+          Key.serialize_call syslog modname stack Key.serialize_call name
+    | _ -> assert false
+  in
+  impl
+    ~packages:[ package ~sublibs:[ "mirage" ] ~min:"0.4.0" "logs-syslog" ]
+    ~keys:[ name; syslog ] ~connect "Logs_syslog_mirage.Udp"
+    (pclock @-> stackv4v6 @-> job)
+
+let optional_monitoring time pclock stack =
+  if_impl
+    (Key.value enable_monitoring)
+    (monitoring $ time $ pclock $ stack)
+    noop
+
+let optional_syslog pclock stack =
+  if_impl (Key.value enable_monitoring) (syslog $ pclock $ stack) noop
 
 let packages = [
   package "logs" ;
   package "cmarkit" ;
   package ~min:"3.7.1" "tcpip" ;
-  package "mirage-monitoring" ;
-  package ~sublibs:["mirage"] ~min:"0.4.0" "logs-syslog" ;
   package ~min:"6.1.1" ~sublibs:["mirage"] "dns-certify";
   package "tls-mirage";
   package ~min:"4.3.1" "mirage-runtime";
@@ -81,10 +128,13 @@ let packages = [
 
 let () =
   register "retreat" [
+    optional_syslog default_posix_clock management_stack;
+    optional_monitoring default_time default_posix_clock management_stack;
+
     foreign
       ~keys:[
         Key.v dns_key ; Key.v dns_server ; Key.v dns_port ; Key.v key ;
-        Key.v name ; Key.v syslog ; Key.v monitor ; Key.v no_tls ;
+        name ; Key.v no_tls ;
       ]
       ~packages
       "Unikernel.Main"
