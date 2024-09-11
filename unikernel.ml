@@ -58,7 +58,7 @@ module K = struct
 
 end
 
-module Main (R : Mirage_random.S) (T : Mirage_time.S) (P : Mirage_clock.PCLOCK) (S : Tcpip.Stack.V4V6) (Management : Tcpip.Stack.V4V6) = struct
+module Main (R : Mirage_crypto_rng_mirage.S) (T : Mirage_time.S) (P : Mirage_clock.PCLOCK) (S : Tcpip.Stack.V4V6) (Management : Tcpip.Stack.V4V6) = struct
   module Dns_certify = Dns_certify_mirage.Make(R)(P)(T)(S)
   module TLS = Tls_mirage.Make(S.TCP)
 
@@ -135,9 +135,13 @@ module Main (R : Mirage_random.S) (T : Mirage_time.S) (P : Mirage_clock.PCLOCK) 
            exit Mirage_runtime.argument_error
          | Ok certificates ->
            let certificates = `Single certificates in
-           let tls_config = Tls.Config.server ~certificates () in
-           Logs.info (fun m -> m "listening for HTTPS on port %u" arg.https_port);
-           S.TCP.listen (S.tcp stack) ~port:arg.https_port (serve_tls tls_config data)
+           match Tls.Config.server ~certificates () with
+           | Error `Msg msg ->
+             Logs.err (fun m -> m "error while building TLS configuration: %s" msg);
+             exit Mirage_runtime.argument_error
+           | Ok tls_config ->
+             Logs.info (fun m -> m "listening for HTTPS on port %u" arg.https_port);
+             S.TCP.listen (S.tcp stack) ~port:arg.https_port (serve_tls tls_config data)
      else
        Lwt.return_unit) >>= fun () ->
     Logs.info (fun m -> m "listening for HTTP in port %u" arg.http_port);
