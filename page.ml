@@ -57,7 +57,7 @@ Previous retreats:
 * 10th November 8th - 14th 2021 in Mirleft (cancelled due to Covid19)
 * 9th March 13th - 19th 2020 in Marrakesh (partially cancelled due to Covid19)
 * 8th September 23rd - 29th 2019 in Marrakesh, reports: [curtisanne (OpenLab Augsburg), in german](https://openlab-augsburg.de/2019/10/lablinked-marrakesh-mirageos-retreat/) [comparing type classes with modules by mark karpov](https://markkarpov.com/post/what-does-a-humped-critter-have-to-teach-us.html)
-* 7th March 6th - 13th 2019 in Marrakesh, reports: [report](https://mirage.io/blog/2019-spring-retreat-roundup) [lynxis](https://lunarius.fe80.eu/blog/mirageos-2019.html) [gabriel](http://gallium.inria.fr/blog/marrakesh-retreat-03-2019/) [tarides](https://tarides.com/blog/2019-05-06-7th-mirageos-hack-retreat.html)
+* 7th March 6th - 13th 2019 in Marrakesh, reports: [report](https://mirage.io/blog/2019-spring-retreat-roundup) [lynxis](https://lunarius.fe80.eu/blog/mirageos-2019.html) [gabriel](http://gallium.inria.fr/blog/marrakesh-retreat-03-2019/) [tarides](https://tarides.com/blog/2019-05-06-7th-mirageos-hack-retreat/)
 * 6th October 3rd - 10th 2018 in Marrakesh
 * 5th March 7th - 18th 2018 in Marrakesh, reports: [linse](https://linse.me/2018/04/20/Visiting-the-camels.html), [peter](https://mirage.io/wiki/arm64)
 * 4th November 29th - December 6th 2017 in Marrakesh, reports: [mirage](https://mirage.io/blog/2017-winter-hackathon-roundup)
