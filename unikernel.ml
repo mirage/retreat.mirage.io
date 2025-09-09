@@ -25,10 +25,6 @@ module K = struct
     let doc = Arg.info ~doc:"certificate key (<type>:seed or b64)" ["key"] in
     Mirage_runtime.register_arg Arg.(value & opt (some string) None doc)
 
-  let hostname =
-    let doc = Arg.info ~doc:"Name of the unikernel" ["name"] in
-    Arg.(value & opt string "retreat.mirageos.org" doc)
-
   let domain_name =
     Arg.conv ~docv:"DOMAIN NAME" (Domain_name.of_string, Domain_name.pp)
 
@@ -36,7 +32,18 @@ module K = struct
     let doc = Arg.info ~doc:"Additional names of the unikernel" ["additional"] in
     Mirage_runtime.register_arg Arg.(value & opt_all domain_name [] doc)
 
-  let host = Mirage_runtime.register_arg hostname
+  let host_name =
+    Arg.conv ~docv:"HOST NAME"
+      ((fun s ->
+          let ( let* ) = Result.bind in
+          let* dn = Domain_name.of_string s in
+          Domain_name.host dn),
+       Domain_name.pp)
+
+  let host =
+    let doc = Arg.info ~doc:"Name of the unikernel" ["hostname"] in
+    let default = Domain_name.(of_string_exn "retreat.mirageos.org" |> host_exn) in
+    Mirage_runtime.register_arg Arg.(value & opt host_name default doc)
 
   let no_tls =
     let doc = Arg.info ~doc:"Disable TLS" [ "no-tls" ] in
@@ -95,17 +102,6 @@ module Main (S : Tcpip.Stack.V4V6) (Management : Tcpip.Stack.V4V6) = struct
       S.TCP.close tcp_flow
 
   let start stack management =
-    let hostname =
-      let ( let* ) = Result.bind in
-      match
-        let* dn = Domain_name.of_string (K.host ()) in
-        Domain_name.host dn
-      with
-      | Ok h -> h
-      | Error `Msg msg ->
-        Logs.err (fun m -> m "hostname %s is not a hostname: %s" (K.host ()) msg);
-        exit Mirage_runtime.argument_error
-    in
     let data =
       let content_size = Cstruct.length Page.rendered in
       [ header content_size ; Page.rendered ]
@@ -129,7 +125,9 @@ module Main (S : Tcpip.Stack.V4V6) (Management : Tcpip.Stack.V4V6) = struct
              Logs.err (fun m -> m "expected for key type:data");
              exit Mirage_runtime.argument_error
          in
-         let additional_hostnames = K.additional_hostnames () in
+         let hostname = K.host ()
+         and additional_hostnames = K.additional_hostnames ()
+         in
          Dns_certify.retrieve_certificate
            stack dns_key ~hostname ~additional_hostnames ~key_type ?key_data
            ?key_seed dns_server (K.dns_port ()) >|= function
