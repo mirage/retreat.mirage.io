@@ -1,31 +1,5 @@
-(* mirage >= 4.10.0 & < 4.11.0 *)
+(* mirage >= 4.11.0 & < 4.12.0 *)
 open Mirage
-
-(* uTCP *)
-
-let tcpv4v6_direct_conf id =
-  let packages_v = Key.pure [ package "utcp" ~sublibs:[ "mirage" ] ] in
-  let connect _ modname = function
-    | [ip] ->
-      code ~pos:__POS__ "Lwt.return (%s.connect %S %s)" modname id ip
-    | _ -> failwith "direct tcpv4v6"
-  in
-  impl ~packages_v ~connect "Utcp_mirage.Make"
-    (ipv4v6 @-> (tcp: 'a tcp typ))
-
-let direct_tcpv4v6 id ip =
-  tcpv4v6_direct_conf id $ ip
-
-let net ?group name netif =
-  let ethernet = ethif netif in
-  let arp = arp ethernet in
-  let i4 = create_ipv4 ?group ethernet arp in
-  let i6 = create_ipv6 ?group netif ethernet in
-  let i4i6 = create_ipv4v6 ?group i4 i6 in
-  let tcpv4v6 = direct_tcpv4v6 name i4i6 in
-  direct_stackv4v6 ?group ~tcp:tcpv4v6 netif ethernet arp i4 i6
-
-let net = net "service" default_network
 
 let enable_monitoring =
   let doc = Key.Arg.info
@@ -33,6 +7,8 @@ let enable_monitoring =
       [ "enable-monitoring" ]
   in
   Key.(create "enable-monitoring" Arg.(flag doc))
+
+let net = generic_stackv4v6 default_network
 
 let management_stack =
   if_impl
@@ -91,7 +67,6 @@ let packages = [
   package ~min:"9.1.0" ~sublibs:["mirage"] "dns-certify";
   package "tls-mirage";
   package ~min:"4.5.0" ~sublibs:["network"] "mirage-runtime";
-  package ~pin:"git+https://github.com/robur-coop/utcp.git" "utcp";
 ]
 
 let () =
